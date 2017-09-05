@@ -1,0 +1,8 @@
+FROM wehkamp/centos:7
+ENTRYPOINT ["/bin/skopeo"]
+
+RUN LAYER=pkg \
+    && yum install -y device-mapper-libs \
+    && ln -s /usr/lib64/libdevmapper.so.1.02 /usr/lib64/libdevmapper.so.1.02.1
+
+COPY skopeo /bin/
